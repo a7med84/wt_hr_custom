@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wide_job_offer_view_form" model="ir.ui.view">
+            <field name="name">wide_job_offer_view_form</field>
+            <field name="model">wide.job.offer</field>
+            <field name="arch" type="xml">
+                <form string="wide_job_offer_form">
+                    <header>
+                        <button name="action_send_document" type="object" class="oe_highlight"
+                                string="إرسال العرض" states="confirm"/>
+                        <button name="confirm_document" type="object" class="oe_highlight"
+                                string="تأكيد العرض" states="draft"
+                                groups="wt_documents.wt_documents_manager,wt_documents.document_confirm"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="department_id" required="1" readonly="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                            <field name="date_hijri"/>
+                        </group>
+                        <group>
+                            <field name="subject" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                        </group>
+                        <notebook>
+                            <page string="تفاصيل العرض">
+                                <group col="4">
+                                    <field name="ar_name" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="en_name" required="1" attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="job_ar_name" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="job_en_name" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="offer_period" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="contract_type" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="day_hours" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="week_hours" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="total_salary" required="1"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                            </page>
+                            <page string="الاعدادت">
+                                <group col="2">
+                                    <field name="document_config_id" attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                                <group>
+                                    <field name="email_message" widget="html"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                </group>
+                            </page>
+                            <page string="المستلمون">
+                                <group>
+                                    <field name="received_ids" readonly="1"/>
+                                    <field name="qr_code" readonly="1" invisible="1"/>
+                                </group>
+                            </page>
+                            <page name="permissions" string="الصلاحيات">
+                                <group>
+                                    <field name="editable_user_ids" widget="many2many_tags"/>
+                                    <field name="confirm_user_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                            <page string="المرفقات">
+                                <group>
+                                    <field name="attachments" widget="many2many_binary" filename="attachments_str"
+                                           attrs="{'readonly':[('state','=','confirm')]}"/>
+                                    <field name="attachments_str" invisible="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="wide_job_offer_view_tree" model="ir.ui.view">
+            <field name="name">wide_job_offer_view_tree</field>
+            <field name="model">wide.job.offer</field>
+            <field name="arch" type="xml">
+                <tree string="wide_job_offer_tree">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="subject"/>
+                    <field name="department_id"/>
+                    <field name="create_uid"/>
+                    <field name="confirm_user_id"/>
+                    <field name="confirm_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="job_offer_action" model="ir.actions.act_window">
+            <field name="name">عروض العمل</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wide.job.offer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="wide_hr_temp_categ" name="النماذج" sequence="3" parent="hr.menu_hr_root"
+                  groups="wt_documents.wt_documents_user,wt_documents.wt_documents_manager,wt_documents.document_confirm,wt_documents.access_specific_document"/>
+        <menuitem id="job_offer_menu" name="عروض العمل" parent="wide_hr_temp_categ" action="job_offer_action"
+                  sequence="0"/>
+    </data>
+</odoo>

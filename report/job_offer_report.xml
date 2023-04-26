@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_assets_common" name="Technical Service Assets Reports"
+                  inherit_id="web.report_assets_common">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" href="/wt_hr_custom/static/src/css/style.css"/>
+            </xpath>
+        </template>
+        <template id="job_offer_temp">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="wt_hr_custom.external_layout_invoice">
+                        <div class="header Traditional-Arabic">
+                            <div dir="rtl">
+                                <table width="100%" style="border:none">
+                                    <tr>
+                                        <td rowspan="3" width="70%" style="vertical-align:middle">
+                                            <div class="text-center"
+                                                 style="font-family:Calibri;height:100px; width:100%;">
+                                                <img t-if="o.document_config_id.header"
+                                                     t-att-src="image_data_uri(o.document_config_id.header)"
+                                                     style="width:100%;"
+                                                     height="100%"/>
+                                            </div>
+                                        </td>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px;" width="30%">
+                                            <span style="font-weight:bold;font-size:20px">الرقم:</span>
+                                            <span t-raw="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px">
+                                            <span style="font-weight:bold;font-size:20px">الموضوع:</span>
+                                            <span t-raw="o.subject"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td dir="rtl" style="text-align:right;padding-right:20px">
+                                            <span style="font-weight:bold;font-size:20px">التاريخ:</span>
+                                            <span dir="ltr" t-raw="o.date.strftime('%Y-%b-%d')"/>
+                                            <br/>
+                                            <span dir="rtl" t-raw="o.date_hijri"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="page Traditional-Arabic">
+                            <table dir="ltr" style="border:none;width:100%">
+                                <tr>
+                                    <td width="100%" style="font-size:40px;font-weight:bold;text-align:center;">عرض عمل
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100%" style="font-size:40px;font-weight:bold;text-align:center;">Job
+                                        Offer
+                                    </td>
+                                </tr>
+                            </table>
+                            <table dir="ltr" style="border:none;width:100%">
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        Dear
+                                        <span t-esc="o.en_name"/>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        السيد /
+                                        <span t-esc="o.ar_name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        With
+                                        reference to your interview and to your qualifications, we are Pleased to offer
+                                        you an employment opportunity with Roayake company
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        السلام
+                                        عليكم ورحمة الله وبركاته<br/>إشارة إلى المقابلة الشخصية التي تمت معكم، وبناءً
+                                        على مؤهلاتكم وخبراتكم، فإننا نود أن نتقدم لكم بعرض عمل، في شركة رؤياك.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        The terms and conditions pertaining to this offer will be as follows:
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        الشروط المرتبطة بهذا العرض هي على الشكل الآتي:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>Job Title:</strong>
+                                        <span t-esc="o.job_en_name"/>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>مسمى الوظيفة:</span>
+                                        <span t-esc="o.job_ar_name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <span>Contract Duration: From The date of commencement till end the one year
+                                        </span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>مدة العقد: يبدأ من تاريخ المباشرة ولمدة عام كامل</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>Offer Duration:</strong>
+                                        <span>(</span>
+                                        <span t-esc="o.offer_period"/>
+                                        <span>) days from date</span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>مدة العرض: (</span>
+                                        <span t-esc="o.offer_period"/>
+                                        <span>أيام ) من تاريخه.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>Probationary Period:</strong>
+                                        <span>Three Months</span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>فترة التجربة: ثلاثة أشهر.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>Contract Type:</strong>
+                                        <span t-if="o.contract_type=='Full'">Full Time to work for</span>
+                                        <span t-else="">Part Time to work for</span>
+                                        <span>(</span>
+                                        <span t-esc="o.day_hours"/>
+                                        <span>) hours daily or (</span>
+                                        <span t-esc="o.week_hours"/>
+                                        <span>) hours weekly.</span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>نوع العقد:</span>
+                                        <span t-if="o.contract_type=='Full'">دوام كامل لمدة</span>
+                                        <span t-else="">دوام جزئي لمدة</span>
+                                        <span>(</span>
+                                        <span t-esc="o.day_hours"/>
+                                        <span>) ساعات يومياً أو لمدة (</span>
+                                        <span t-esc="o.week_hours"/>
+                                        <span>) ساعة أسبوعياً</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>Total Salary:</strong>
+                                        <span>(</span>
+                                        <span t-esc="o.total_salary"/>
+                                        <span>) EGP</span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>الراتب الإجمالي: (</span>
+                                        <span t-esc="o.total_salary"/>
+                                        <span>) جنيه.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+
+                                        <strong>Work Location:</strong>
+                                        <span>Remotely</span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>مقر العمل: العمل عن بعد</span>
+                                    </td>
+                                </tr>
+                                <tr t-if="o.contract_type=='Full'">
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>Annual Leave:</strong>
+                                        <span>(30) days per year</span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>الإجازة السنوية: (30) يوماً عن كل سنة عمل.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <strong>General Provisions</strong>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>أحكام عامة</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="padding-left:10px;vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <span>The interpretation of this offer is subjected to the content and applied
+                                            regulations of the Egypt Labor Law, and all other rules pertaining to this
+                                            matter
+                                        </span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="padding-right:10px;vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>• يخضع تفسير وتنفيذ هذا العرض لنظام العمل والعمال الساري المفعول في مصر
+                                            ولباقي الأنظمة التي تتعلق بهذا الشأن.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="padding-left:10px;vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <span>Any conflicts rising due to this offer are attributed to be resolved by
+                                            the concerned Egypt Authorities
+                                        </span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="padding-right:10px;vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>• يعود الفصل في جميع المنازعات التي قد تنشأ عنه للسلطات المصرية المختصة.
+                                            وتعتبر القرارات الصادرة عنه نهائية وملزمة للطرفين.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td dir="ltr" width="50%"
+                                        style="padding-left:10px;vertical-align:middle;font-size:20px;font-weight:bold;text-align:left;">
+                                        <span>The Egypt Labor Law shall be applied to all issues which are not covered
+                                            in this offer
+                                        </span>
+                                    </td>
+                                    <td dir="rtl" width="50%"
+                                        style="padding-right:10px;vertical-align:middle;font-size:20px;font-weight:bold;text-align:right;">
+                                        <span>• هذا وينطبق نظام العمل المصري على جميع الأمور التي لم يرد عنها نص صريح في
+                                            هذا العرض.
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <style>
+                                .square {
+                                height: 10px;
+                                width: 10px;
+                                background-color: #555;
+                                }
+                            </style>
+                            <table style="border:none;width:100%">
+                                <tr>
+
+                                    <tr>
+                                        <td dir="rtl" width="100%"
+                                            style="padding-right:50px;vertical-align:middle;font-size:30px;font-weight:bold;text-align:right;">
+                                        <span> موافق على العرض -  غير موافق على العرض</span>
+                                        </td>
+                                    </tr>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="footer Traditional-Arabic">
+                            <table dir="rtl" width="100%" style="border:none">
+                                <tr>
+                                    <td rowspan="3" width="80%" style="vertical-align:middle">
+                                        <div class="text-center" style="font-family:Calibri;height:100px; width:100%;">
+                                            <img t-if="o.document_config_id.footer"
+                                                 t-att-src="image_data_uri(o.document_config_id.footer)"
+                                                 style="width:100%;"
+                                                 height="100%"/>
+                                        </div>
+                                    </td>
+                                    <td rowspan="3" dir="rtl" style="text-align:center;" width="20%">
+                                        <t t-if="o.state == 'confirm'">
+                                            <t t-set="report_info" t-value="xmlid" invisible="1"/>
+                                            <img t-if="o._get_api_code(report_info)"
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1'% ('QR', o._get_api_code(report_info) , 100, 100)"
+                                                 alt="Qrcode"/>
+                                        </t>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="wt_hr_custom.external_layout_invoice">
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
+                 t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-set="colclass" t-value="('col-md-5' if report_type == 'html' else 'col-5') + ' ml-auto'"/>
+                <t t-if="address">
+                    <div class="address row">
+                        <t t-if="information_block">
+                            <t t-set="colclass" t-value="'col-5 offset-1'"/>
+                            <div name="information_block" class="col-6">
+                                <t t-raw="information_block"/>
+                            </div>
+                        </t>
+                        <div name="address" t-att-class="colclass">
+                            <t t-raw="address"/>
+                        </div>
+                    </div>
+                </t>
+                <t t-raw="0"/>
+            </div>
+        </template>
+
+        <record id="job_offer_report" model="ir.actions.report">
+            <field name="name">طباعة الخطاب</field>
+            <field name="model">wide.job.offer</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wt_hr_custom.job_offer_temp</field>
+            <field name="report_file">Document</field>
+            <field name="binding_model_id" ref="model_wide_job_offer"/>
+            <field name="print_report_name">'%s/%s/%s' % (object.subject,object.name,object.date_hijri)</field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

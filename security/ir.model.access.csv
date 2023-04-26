@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wide_job_offer_manager,wide.job.offer.manager,model_wide_job_offer,wt_documents.wt_documents_manager,1,1,1,1
+access_wide_job_offer_specific,wide.job.offer.specific,model_wide_job_offer,wt_documents.access_specific_document,1,1,0,0
+access_wide_job_offer_confirm,wide.job.offer.confirm,model_wide_job_offer,wt_documents.document_confirm,1,0,0,0
+access_wide_job_offer_user,wide.job.offer.user,model_wide_job_offer,wt_documents.wt_documents_user,1,1,1,0
+
+access_send_job_offer,send.job.offer,model_send_job_offer,,1,1,1,1
+access_confirm_job_offer,confirm.job.offer,model_confirm_job_offer,,1,1,1,1
